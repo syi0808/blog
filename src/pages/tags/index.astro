@@ -1,0 +1,28 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getSortedPosts, getAllTags } from "../../lib/posts";
+
+const posts = await getSortedPosts();
+const tags = getAllTags(posts);
+---
+
+<BaseLayout title="Tags — Yein Sung" description="Browse posts by topic.">
+  <div class="mx-auto max-w-[740px] px-6 py-16">
+    <h1 class="font-mono text-[10px] tracking-widest uppercase text-(--color-text-sub) mb-6 pb-2 border-b border-(--color-border)">
+      Tags
+    </h1>
+    <ul class="flex flex-wrap gap-2">
+      {[...tags.entries()].map(([tag, count]) => (
+        <li>
+          <a
+            href={`${import.meta.env.BASE_URL}tags/${tag}`}
+            class="inline-flex items-center gap-2 px-3 py-1.5 font-mono text-xs border border-(--color-border) text-(--color-text-sub) hover:text-(--color-text) hover:border-(--color-text-sub) hover:bg-(--color-surface) transition-colors"
+          >
+            {tag}
+            <span class="text-(--color-accent)">{count}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</BaseLayout>

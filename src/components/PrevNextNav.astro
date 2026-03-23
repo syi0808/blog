@@ -1,0 +1,35 @@
+---
+import type { BlogPost } from "../lib/posts";
+
+interface Props {
+  prev: BlogPost | null;
+  next: BlogPost | null;
+}
+
+const { prev, next } = Astro.props;
+---
+
+{(prev || next) && (
+  <nav aria-label="Post navigation" class="mt-12 pt-6 border-t border-(--color-border) flex justify-between gap-6">
+    <div class="min-w-0">
+      {prev && (
+        <a href={`${import.meta.env.BASE_URL}${prev.id}`} class="group block">
+          <span class="font-mono text-[10px] tracking-widest uppercase text-(--color-text-sub)">Prev</span>
+          <p class="text-sm text-(--color-text-sub) group-hover:text-(--color-text) transition-colors truncate mt-0.5">
+            {prev.data.title}
+          </p>
+        </a>
+      )}
+    </div>
+    <div class="min-w-0 text-right">
+      {next && (
+        <a href={`${import.meta.env.BASE_URL}${next.id}`} class="group block">
+          <span class="font-mono text-[10px] tracking-widest uppercase text-(--color-text-sub)">Next</span>
+          <p class="text-sm text-(--color-text-sub) group-hover:text-(--color-text) transition-colors truncate mt-0.5">
+            {next.data.title}
+          </p>
+        </a>
+      )}
+    </div>
+  </nav>
+)}

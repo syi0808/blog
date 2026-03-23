@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#fafafa"/>
+  <text x="600" y="300" dominant-baseline="middle" text-anchor="middle" font-family="system-ui" font-size="64" font-weight="600" fill="#2c2c2c">Yein Sung</text>
+  <text x="600" y="380" dominant-baseline="middle" text-anchor="middle" font-family="system-ui" font-size="24" fill="#737373">Developer Blog</text>
+</svg>

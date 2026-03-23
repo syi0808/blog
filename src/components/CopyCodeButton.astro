@@ -1,0 +1,42 @@
+<!-- Injected via client-side script to all <pre> elements -->
+<script>
+  document.querySelectorAll(".prose pre").forEach((pre) => {
+    const wrapper = pre.parentElement || pre;
+    wrapper.style.position = "relative";
+
+    const button = document.createElement("button");
+    Object.assign(button.style, {
+      position: "absolute",
+      top: "0.5rem",
+      right: "0.5rem",
+      padding: "0.25rem 0.5rem",
+      fontSize: "0.625rem",
+      fontFamily: "var(--font-mono)",
+      letterSpacing: "0.05em",
+      textTransform: "uppercase",
+      borderRadius: "0",
+      opacity: "0",
+      transition: "opacity 0.15s",
+      backgroundColor: "var(--color-border)",
+      color: "var(--color-text-sub)",
+      border: "none",
+      cursor: "pointer",
+    });
+    button.textContent = "Copy";
+
+    pre.addEventListener("mouseenter", () => (button.style.opacity = "1"));
+    pre.addEventListener("mouseleave", () => (button.style.opacity = "0"));
+
+    button.addEventListener("click", async () => {
+      const code = pre.querySelector("code");
+      if (code) {
+        await navigator.clipboard.writeText(code.textContent ?? "");
+        button.textContent = "Copied!";
+        setTimeout(() => (button.textContent = "Copy"), 2000);
+      }
+    });
+
+    pre.style.position = "relative";
+    pre.appendChild(button);
+  });
+</script>

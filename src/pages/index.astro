@@ -1,0 +1,79 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import PostList from "../components/PostList.astro";
+import JsonLd from "../components/JsonLd.astro";
+import { getSortedPosts } from "../lib/posts";
+import { projects } from "../data/projects";
+import { SITE, AUTHOR } from "../lib/seo";
+
+const posts = await getSortedPosts();
+const recentPosts = posts.slice(0, 5);
+
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: SITE.title,
+  url: SITE.url,
+  inLanguage: SITE.lang,
+  description: SITE.description,
+};
+
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: AUTHOR.name,
+  url: SITE.url,
+  sameAs: [AUTHOR.github],
+};
+---
+
+<BaseLayout title="Yein Sung" description="Developer blog — software engineering, open-source tools, and development practices.">
+  <JsonLd data={websiteJsonLd} />
+  <JsonLd data={personJsonLd} />
+  <div class="mx-auto max-w-[740px] px-6 py-16">
+    <section class="mb-16">
+      <p class="font-mono text-xs tracking-widest uppercase text-(--color-accent) mb-3">Developer</p>
+      <h1 class="text-xl font-semibold tracking-tight mb-3">Yein Sung</h1>
+      <p class="text-sm text-(--color-text-sub) leading-relaxed max-w-md">
+        Building open-source tools for better development workflows.
+      </p>
+    </section>
+
+    {projects.length > 0 && (
+      <section class="mb-16">
+        <h2 class="font-mono text-[10px] tracking-widest uppercase text-(--color-text-sub) mb-4 pb-2 border-b border-(--color-border)">
+          Projects
+        </h2>
+        <ul class="space-y-2">
+          {projects.map((project) => (
+            <li>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="group flex items-baseline gap-3 py-1.5 -mx-3 px-3 hover:bg-(--color-surface) transition-colors"
+              >
+                <span class="font-mono text-sm text-(--color-text)">
+                  {project.name}
+                </span>
+                <span class="text-xs text-(--color-text-sub)">
+                  {project.description}
+                </span>
+                <span class="font-mono text-[10px] text-(--color-accent) ml-auto shrink-0 opacity-0 group-hover:opacity-100 transition-opacity">
+                  &rarr;
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section>
+      <h2 class="font-mono text-[10px] tracking-widest uppercase text-(--color-text-sub) mb-4 pb-2 border-b border-(--color-border)">
+        Recent
+      </h2>
+      <PostList posts={recentPosts} />
+    </section>
+  </div>
+</BaseLayout>

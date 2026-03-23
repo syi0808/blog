@@ -1,0 +1,205 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", "JetBrains Mono", ui-monospace, monospace;
+}
+
+/* Light mode — cool zinc grays, industrial palette */
+:root {
+  --color-bg: #fafafa;
+  --color-surface: #f0f0f2;
+  --color-text: #1c1c1e;
+  --color-text-sub: #6e6e73;
+  --color-border: #d2d2d7;
+  --color-primary: #48484a;
+  --color-primary-hover: #1c1c1e;
+  --color-accent: #8e8e93;
+}
+
+/* Dark mode — deep zinc, near-black */
+.dark {
+  --color-bg: #161618;
+  --color-surface: #1e1e21;
+  --color-text: #e5e5e7;
+  --color-text-sub: #7c7c80;
+  --color-border: #2c2c2e;
+  --color-primary: #a1a1a6;
+  --color-primary-hover: #e5e5e7;
+  --color-accent: #636366;
+}
+
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background-color: var(--color-border);
+    color: var(--color-text);
+  }
+}
+
+/* ── Prose typography ── */
+
+@layer base {
+  .prose {
+    max-width: 680px;
+  }
+
+  .prose h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--color-border);
+    color: var(--color-text);
+  }
+
+  .prose h3 {
+    font-size: 1.0625rem;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    margin-top: 1.75rem;
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+  }
+
+  .prose p {
+    margin-bottom: 1.25rem;
+    color: var(--color-text);
+  }
+
+  .prose a {
+    color: var(--color-text);
+    text-decoration: underline;
+    text-decoration-color: var(--color-border);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1px;
+    transition: text-decoration-color 0.15s;
+  }
+
+  .prose a:hover {
+    text-decoration-color: var(--color-text);
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-bottom: 1.25rem;
+    padding-left: 1.25rem;
+  }
+
+  .prose ul {
+    list-style: none;
+  }
+
+  .prose ul > li {
+    position: relative;
+    padding-left: 0.75rem;
+  }
+
+  .prose ul > li::before {
+    content: "—";
+    position: absolute;
+    left: -1rem;
+    color: var(--color-accent);
+    font-size: 0.75rem;
+    top: 0.15em;
+  }
+
+  .prose ol {
+    list-style-type: decimal;
+  }
+
+  .prose li {
+    margin-bottom: 0.375rem;
+  }
+
+  .prose blockquote {
+    border-left: 2px solid var(--color-accent);
+    padding-left: 1rem;
+    color: var(--color-text-sub);
+    margin-bottom: 1.25rem;
+    font-style: italic;
+  }
+
+  .prose code:not(pre code) {
+    font-family: var(--font-mono);
+    font-size: 0.8125em;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    padding: 0.1rem 0.35rem;
+    border-radius: 2px;
+  }
+
+  .prose pre {
+    position: relative;
+    font-family: var(--font-mono);
+    font-size: 0.8125rem;
+    line-height: 1.65;
+    padding: 1rem 1.25rem;
+    border: 1px solid var(--color-border);
+    border-radius: 0;
+    overflow-x: auto;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose img {
+    border: 1px solid var(--color-border);
+    margin-top: 1.25rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .prose hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: 2.5rem 0;
+  }
+
+  .prose table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1.25rem;
+    font-size: 0.875rem;
+  }
+
+  .prose th,
+  .prose td {
+    border: 1px solid var(--color-border);
+    padding: 0.5rem 0.75rem;
+    text-align: left;
+  }
+
+  .prose th {
+    font-weight: 600;
+    font-size: 0.6875rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--color-text-sub);
+    background-color: var(--color-surface);
+  }
+}
+
+/* ── Shiki dual themes ── */
+
+@layer base {
+  .shiki,
+  .shiki span {
+    color: var(--shiki-light) !important;
+    background-color: var(--shiki-light-bg) !important;
+  }
+
+  .dark .shiki,
+  .dark .shiki span {
+    color: var(--shiki-dark) !important;
+    background-color: var(--shiki-dark-bg) !important;
+  }
+}
