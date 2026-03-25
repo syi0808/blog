@@ -18,7 +18,7 @@ import "../styles/global.css";
 const {
   title,
   description,
-  image = "/og-default.svg",
+  image = "/og-default.png",
   type = "website",
   publishedDate,
   modifiedDate,
@@ -35,6 +35,7 @@ const ogImageURL = new URL(image, Astro.site);
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="google-site-verification" content="ebhqMwe5mHyj7bFj5VSCKkrAdg9HgL5aIZi8RFOnR_0" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="sitemap" href={`${import.meta.env.BASE_URL}sitemap-index.xml`} />
     <link rel="alternate" type="application/rss+xml" title={`${SITE.title}'s blog`} href={`${import.meta.env.BASE_URL}rss.xml`} />
@@ -63,13 +64,21 @@ const ogImageURL = new URL(image, Astro.site);
     {modifiedDate && <meta property="article:modified_time" content={modifiedDate} />}
     {type === "article" && <meta property="article:author" content={AUTHOR.url} />}
 
-    <!-- Fonts -->
+    <!-- Fonts: preload to avoid render-blocking -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
+      rel="preload"
+      as="style"
       href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
+      onload="this.onload=null;this.rel='stylesheet'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
 
     <!-- Theme: apply before paint to prevent FOWT -->
     <script is:inline>

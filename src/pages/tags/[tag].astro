@@ -1,7 +1,9 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import PostList from "../../components/PostList.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import { getSortedPosts, getAllTags } from "../../lib/posts";
+import { SITE } from "../../lib/seo";
 
 export async function getStaticPaths() {
   const posts = await getSortedPosts();
@@ -17,13 +19,36 @@ export async function getStaticPaths() {
 
 const { tag } = Astro.params;
 const { posts } = Astro.props;
+
+const collectionLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `Posts tagged "${tag}"`,
+  description: `Articles about ${tag} — software engineering, open-source tools, and development practices.`,
+  url: `${SITE.url}/tags/${tag}/`,
+  inLanguage: SITE.lang,
+  mainEntity: {
+    "@type": "ItemList",
+    numberOfItems: posts.length,
+    itemListElement: posts.map((post, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${SITE.url}/${post.id}/`,
+      name: post.data.title,
+    })),
+  },
+};
 ---
 
-<BaseLayout title={`${tag} — Yein Sung`} description={`Posts tagged with "${tag}".`}>
+<BaseLayout title={`${tag} — Yein Sung`} description={`Articles about ${tag} — software engineering, open-source tools, and development practices.`}>
+  <JsonLd data={collectionLd} />
   <div class="mx-auto max-w-[740px] px-6 py-16">
     <h1 class="font-mono text-[10px] tracking-widest uppercase text-(--color-text-sub) mb-6 pb-2 border-b border-(--color-border)">
       Tag / {tag}
     </h1>
+    <p class="text-sm text-(--color-text-sub) mb-6">
+      {posts.length} {posts.length === 1 ? "article" : "articles"} tagged with "{tag}".
+    </p>
     <PostList posts={posts} />
   </div>
 </BaseLayout>

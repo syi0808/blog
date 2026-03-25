@@ -1,12 +1,24 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import JsonLd from "../../components/JsonLd.astro";
 import { getSortedPosts, getAllTags } from "../../lib/posts";
+import { SITE } from "../../lib/seo";
 
 const posts = await getSortedPosts();
 const tags = getAllTags(posts);
+
+const collectionLd = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: `Tags — ${SITE.title}`,
+  description: "Browse articles by topic.",
+  url: `${SITE.url}/tags/`,
+  inLanguage: SITE.lang,
+};
 ---
 
 <BaseLayout title="Tags — Yein Sung" description="Browse posts by topic.">
+  <JsonLd data={collectionLd} />
   <div class="mx-auto max-w-[740px] px-6 py-16">
     <h1 class="font-mono text-[10px] tracking-widest uppercase text-(--color-text-sub) mb-6 pb-2 border-b border-(--color-border)">
       Tags

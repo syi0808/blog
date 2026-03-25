@@ -6,8 +6,6 @@ tags: ["npm", "jsr", "javascript", "typescript", "opensource", "pubm"]
 draft: false
 ---
 
-# The Complete Guide to Publishing Your npm Package (+ JSR in One Command)
-
 You've finished your library. The API is clean, the tests pass, the README is polished. Time to publish.
 
 If you're shipping a JavaScript or TypeScript library today, "just run `npm publish`" is no longer the full picture. npm is still the dominant registry, but [JSR](https://jsr.io), a newer registry built with TypeScript as a first-class citizen, is growing fast. JSR generates documentation directly from your source types, enforces a quality scoring system, and is gaining traction among Deno users and TypeScript-first developers who want native `.ts` imports. Skipping JSR means a real, growing audience never finds your work.

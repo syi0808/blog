@@ -16,7 +16,7 @@ export async function GET(context: APIContext) {
           title: post.data.title,
           pubDate: post.data.date,
           description: post.data.description,
-          link: `/${post.id}/`,
+          link: `${import.meta.env.BASE_URL}${post.id}/`,
           content: post.body ?? post.data.description,
         };
       })

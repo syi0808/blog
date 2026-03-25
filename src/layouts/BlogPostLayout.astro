@@ -26,7 +26,7 @@ const wordCount = content.trim().split(/\s+/).length;
 const postUrl = `${SITE.url}/${post.id}/`;
 const ogImage = post.data.image
   ? `${SITE.url}/${post.data.image.replace(/^\//, "")}`
-  : `${SITE.url}/og-default.svg`;
+  : `${SITE.url}/og-default.png`;
 
 const jsonLd = {
   "@context": "https://schema.org",
