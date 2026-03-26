@@ -264,5 +264,4 @@ pubm init
 pubm
 ```
 
-**Docs and full reference:** [pubm docs](https://syi0808.github.io/pubm/)
-
+**Docs and full reference:** [pubm docs](https://syi0808.github.io/pubm/guides/quick-start/)
