@@ -3,8 +3,7 @@ import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
-  site: "https://syi0808.github.io",
-  base: "/blog/",
+  site: "https://blog.castle-yein.com",
   integrations: [
     sitemap({
       serialize(item) {

@@ -14,7 +14,7 @@ Requires Node.js >=22.12.0 and pnpm 10.x.
 
 ## Architecture
 
-Astro 6 static blog deployed to GitHub Pages at https://syi0808.github.io/blog/.
+Astro 6 static blog deployed to GitHub Pages at https://blog.castle-yein.com.
 
 **Content model:** Markdown files in `src/content/blog/` with frontmatter schema defined in `src/content.config.ts` (title, description, date, tags, draft, image, updatedDate). Draft posts are filtered out in production via `src/lib/posts.ts`.
 
@@ -28,4 +28,4 @@ Astro 6 static blog deployed to GitHub Pages at https://syi0808.github.io/blog/.
 
 ## Deployment
 
-Push to `main` triggers GitHub Actions (`.github/workflows/deploy.yml`) which builds and deploys to GitHub Pages. Base path is `/blog/`.
+Push to `main` triggers GitHub Actions (`.github/workflows/deploy.yml`) which builds and deploys to GitHub Pages. Custom domain: `blog.castle-yein.com`.

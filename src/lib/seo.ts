@@ -1,5 +1,5 @@
 export const SITE = {
-  url: "https://syi0808.github.io/blog",
+  url: "https://blog.castle-yein.com",
   title: "Yein Sung",
   description:
     "Developer blog — software engineering, open-source tools, and development practices.",
