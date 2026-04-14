@@ -23,4 +23,4 @@ Allow: /
 User-agent: Applebot-Extended
 Allow: /
 
-Sitemap: https://syi0808.github.io/blog/sitemap-index.xml
+Sitemap: https://blog.castle-yein.com/sitemap-index.xml

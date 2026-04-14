@@ -4,14 +4,7 @@ import sitemap from "@astrojs/sitemap";
 
 export default defineConfig({
   site: "https://blog.castle-yein.com",
-  integrations: [
-    sitemap({
-      serialize(item) {
-        item.lastmod = new Date();
-        return item;
-      },
-    }),
-  ],
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
